@@ -28,4 +28,15 @@ Array.prototype.myMap = function(fn) {
     return output;
 }
 
-console.log(people.myMap(person => person.age));
+Array.prototype.myReduce = function(fn) {
+    if (this.length === 0) throw new Error('Array must have element(s)');
+    if (this.length === 1) return this[0];
+    let temp = fn(this[0], this[1]);
+    for (let index = 2; index < this.length; index++) {
+        const element = this[index];
+        temp = fn(temp, element);
+    }
+    return temp;
+}
+
+// console.log([].myReduce((a, b) => a + b));
